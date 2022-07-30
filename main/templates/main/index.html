@@ -1,0 +1,14 @@
+ {%  extends 'main/base.html' %}
+
+ {% block content %}
+    <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
+      <h1 class="display-4 fw-normal">Здесь любят книги</h1>
+      <p class="fs-5 text-muted">Обменяйте книгу в общежитие №6. Бронирование доступно в течение трёх дней</p>
+    </div>
+     {% for book in books %}
+         <h1>{{ book.name }}</h1>
+
+         <h1>{{ book.writer }}</h1>
+         <p>{{ book.img }}</p>
+     {% endfor %}
+ {% endblock%}
