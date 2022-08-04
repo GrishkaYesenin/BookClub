@@ -8,18 +8,20 @@ def index(request):
 
 def add_book(request, book_id):
     error = ''
+    book = Book.objects.get(id=book_id)
     if request.method == 'POST':
         form = BookForm(request.POST)
         if form.is_valid():
             form.save()
-            Book.objects.filter(id=book_id).delete()
+            book.delete()
             return redirect('home')
         else:
             error = 'К сожалению, форма была заполнена с ошибкой'
     form = BookForm()
     context = {
         'form': form,
-        'error': error
+        'error': error,
+        'book_name': book.name
     }
     return render(request, 'main/add_book.html', context)
 

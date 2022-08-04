@@ -1,6 +1,11 @@
  {%  extends 'main/base.html' %}
 
 {% block content %}
+    <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
+      <h1 class="display-4 fw-normal">Ты меняешь книгу "{{ book_name }}"</h1>
+      <p class="fs-5 text-muted">Обменяй книгу в общежитие №6 МФТИ</p>
+    </div>
+
      <form method="post">
       {% csrf_token %}
          {{ form.name }}<br>
