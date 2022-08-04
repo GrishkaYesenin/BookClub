@@ -6,12 +6,13 @@ def index(request):
     books = Book.objects.all()
     return render(request, 'main/index.html', {'books': books})
 
-def add_book(request):
+def add_book(request, book_id):
     error = ''
     if request.method == 'POST':
         form = BookForm(request.POST)
         if form.is_valid():
             form.save()
+            print(book_id)
             return redirect('home')
         else:
             error = 'К сожалению, форма была заполнена с ошибкой'
