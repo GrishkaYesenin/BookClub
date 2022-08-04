@@ -12,7 +12,7 @@ def add_book(request, book_id):
         form = BookForm(request.POST)
         if form.is_valid():
             form.save()
-            print(book_id)
+            Book.objects.filter(id=book_id).delete()
             return redirect('home')
         else:
             error = 'К сожалению, форма была заполнена с ошибкой'
