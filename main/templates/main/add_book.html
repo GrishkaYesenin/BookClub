@@ -6,12 +6,14 @@
       <p class="fs-5 text-muted">Обменяй книгу в общежитие №6 МФТИ</p>
     </div>
 
+    <div class="text-center">
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit" class="btn btn-success">Добавить</button>
         <span>{{ error }}</span>
     </form>
+    </div>>
 
     {% if img_obj %}
       <h3>Succesfully uploaded : {{img_obj.title}}</h3>
