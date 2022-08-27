@@ -6,11 +6,15 @@
       <p class="fs-5 text-muted">Обменяй книгу в общежитие №6 МФТИ</p>
     </div>
 
-     <form method="post">
-      {% csrf_token %}
-         {{ form.name }}<br>
-         {{ form.writer }}<br>
-         <button type="submit" class="btn btn-success">Добавить</button>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-success">Добавить</button>
         <span>{{ error }}</span>
-     </form>
+    </form>
+
+    {% if img_obj %}
+      <h3>Succesfully uploaded : {{img_obj.title}}</h3>
+      <img src="{{ img_obj.image.url}}" alt="connect" style="max-height:300px">
+    {% endif %}
  {% endblock %}

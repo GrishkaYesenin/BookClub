@@ -6,22 +6,23 @@ def index(request):
     books = Book.objects.all()
     return render(request, 'main/index.html', {'books': books})
 
-def add_book(request, book_id):
+def image_upload_view(request, book_id):
+    """Process images uploaded by users"""
     error = ''
-    book = Book.objects.get(id=book_id)
+    old_book = Book.objects.get(id=book_id)
     if request.method == 'POST':
-        form = BookForm(request.POST)
+        form = BookForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            book.delete()
+            # Get the current instance object to display in the template
+            old_book.delete()
             return redirect('home')
-        else:
-            error = 'К сожалению, форма была заполнена с ошибкой'
-    form = BookForm()
-    context = {
-        'form': form,
-        'error': error,
-        'book_name': book.name
-    }
-    return render(request, 'main/add_book.html', context)
+    else:
+        form = BookForm()
+        context = {
+            'form': form,
+            'error': error,
+            'book_name': old_book.name
+        }
+        return render(request, 'main/add_book.html', context)
 

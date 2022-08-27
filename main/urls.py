@@ -5,5 +5,8 @@ from . import views
 
 urlpatterns = [
     path('', views.index, name='home'),
-    path('add_book/<book_id>', views.add_book, name='add_book'),
-]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    path('add_book/<book_id>', views.image_upload_view, name='add_book'),
+]
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL,
+                          document_root=settings.MEDIA_ROOT)
