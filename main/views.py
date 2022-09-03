@@ -3,7 +3,7 @@ from .models import Book
 from .forms import BookForm
 
 def index(request):
-    books = Book.objects.all()
+    books = Book.objects.all().order_by("-datetime")
     return render(request, 'main/index.html', {'books': books})
 
 def image_upload_view(request, book_id):
